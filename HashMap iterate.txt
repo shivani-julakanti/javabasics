@@ -1,0 +1,43 @@
+System.out.println("Using EntrySet");
+for(Map.Entry<String, String> studentEntry : studentGrades.entrySet())
+{
+    System.out.println(studentEntry.getKey() +" :: "+ studentEntry.getValue());
+    //if you uncomment below code, it will throw java.util.ConcurrentModificationException
+    //studentGrades.remove("Alan");
+}
+
+
+/**
+ * Method #2: Using KeySet and advanced for loop.
+ * This method is not suitable for modifying the Map
+ * while iterating through it.
+ */
+
+System.out.println("Using KeySet");
+for(String key: map.keySet())
+{
+    System.out.println(key  +" :: "+ map.get(key));
+    //if you uncomment below code, it will throw java.util.ConcurrentModificationException
+    //studentGrades.remove("Alan");
+}
+
+//Iterating over values only
+for (Integer value : map.values())
+{
+	System.out.println("Value = " + value);
+}
+
+/**
+ * Method #3: Using Iterator and while loop.
+ * In this method you can rmeove the entries
+ * while iterating through it.
+ */
+System.out.println("Using Iterator");
+Iterator<Map.Entry<String, String>> iterator = studentGrades.entrySet().iterator() ;
+while(iterator.hasNext())
+{
+    Map.Entry<String, String> studentEntry = iterator.next();
+    System.out.println(studentEntry.getKey() +" :: "+ studentEntry.getValue());
+    //You can remove elements while iterating.
+    iterator.remove();
+}
